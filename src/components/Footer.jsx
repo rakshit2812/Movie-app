@@ -21,6 +21,9 @@ const Footer = () => {
           <li className="menuItem">Blog</li>
           <li className="menuItem">FAQ</li>
         </ul>
+        <p className="developer">
+          Developed by Rakshit Gupta.
+        </p>
         <div className="infoText">Empowering individuals through creativity since 2023. Explore our story and join the movement.
         </div>
         <div className="infoText">Thanks for visiting! Connect with us on social media, explore our blog, or contact us directly. We're always happy to hear from you.
