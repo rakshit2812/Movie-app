@@ -12,7 +12,6 @@ export default function Home() {
       <Trending/>
       <Popular/>
       <TopRated/>
-      {/* <div className="test" style = {{height : '1000px'}}></div> */}
     </div>
   )
 }

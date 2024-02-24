@@ -26,7 +26,10 @@ const sortbyData = [
   { value: "original_title.asc", label: "Title (A-Z)" },
 ];
 
-const Explore = () => {
+const Explore = ({bollywood}) => {
+  if(bollywood){
+    filters = {with_original_language: "hi"};
+  }
   const [data, setData] = useState(null);
   const [pageNum, setPageNum] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -63,13 +66,18 @@ const Explore = () => {
   };
 
   useEffect(() => {
-    filters = {};
+    if(bollywood){
+      filters = {with_original_language: "hi"};
+    }
+    else{
+      filters = {};
+    }
     setData(null);
     setPageNum(1);
     setSortby(null);
     setGenre(null);
     fetchInitialData();
-  }, [mediaType]);
+  }, [mediaType, bollywood]);
 
   const onChange = (selectedItems, action) => {
     if (action.name === "sortby") {

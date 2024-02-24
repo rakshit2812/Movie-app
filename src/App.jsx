@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchDatafromAPI } from "./utils/api";
 import { useSelector, useDispatch } from "react-redux";
 import { getAPIconfiguration, getGenres } from "./store/homeSlice";
@@ -11,9 +11,9 @@ import Details from "./pages/Details";
 import SearchResult from "./pages/SearchResult";
 import Explore from "./pages/Explore";
 import ErrorPage from "./pages/ErrorPage";
-import Bollywood from "./pages/Bollywood";
 
 function App() {
+  const [bollywood , Setbollywood] = useState(false);
   const dispatch = useDispatch();
   const { url } = useSelector((state) => state.home);
   useEffect(() => {
@@ -53,13 +53,12 @@ function App() {
   
   return (
     <BrowserRouter>
-      <Header/>
+      <Header Setbollywood = {Setbollywood}/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home/>} />
         <Route path="/:mediaType/:id" element={<Details />} />
         <Route path="/search/:query" element={<SearchResult />} />
-        <Route path="/explore/:mediaType" element={<Explore />} />
-        <Route path="/bollywood" element={<Bollywood/>} />
+        <Route path="/explore/:mediaType" element={<Explore bollywood={bollywood}/>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer/>
