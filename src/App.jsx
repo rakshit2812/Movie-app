@@ -14,6 +14,7 @@ import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   const [bollywood , Setbollywood] = useState(false);
+  const [latest , Setlatest] = useState(false);
   const dispatch = useDispatch();
   const { url } = useSelector((state) => state.home);
   useEffect(() => {
@@ -53,12 +54,12 @@ function App() {
   
   return (
     <BrowserRouter>
-      <Header Setbollywood = {Setbollywood}/>
+      <Header Setbollywood = {Setbollywood} Setlatest = {Setlatest}/>
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/:mediaType/:id" element={<Details />} />
         <Route path="/search/:query" element={<SearchResult />} />
-        <Route path="/explore/:mediaType" element={<Explore bollywood={bollywood}/>} />
+        <Route path="/explore/:mediaType" element={<Explore bollywood={bollywood} latest = {latest}/>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer/>
@@ -67,3 +68,7 @@ function App() {
 }
 
 export default App;
+
+
+// git clone hhttps://github.com/<YOUR GITHUB USERNAME>/developer-portfolio.git
+// cd developer-portfolio

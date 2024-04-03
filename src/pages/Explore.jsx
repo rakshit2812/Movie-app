@@ -26,9 +26,13 @@ const sortbyData = [
   { value: "original_title.asc", label: "Title (A-Z)" },
 ];
 
-const Explore = ({bollywood}) => {
+const Explore = ({bollywood, latest}) => {
   if(bollywood){
     filters = {with_original_language: "hi"};
+  }
+  else if(latest){
+    filters = {with_original_language: "hi",
+    primary_release_year: "2024"}
   }
   const [data, setData] = useState(null);
   const [pageNum, setPageNum] = useState(1);
@@ -69,6 +73,10 @@ const Explore = ({bollywood}) => {
     if(bollywood){
       filters = {with_original_language: "hi"};
     }
+    else if(latest){
+      filters = {with_original_language: "hi",
+      primary_release_year: "2024"}
+    }
     else{
       filters = {};
     }
@@ -77,7 +85,7 @@ const Explore = ({bollywood}) => {
     setSortby(null);
     setGenre(null);
     fetchInitialData();
-  }, [mediaType, bollywood]);
+  }, [mediaType, bollywood, latest]);
 
   const onChange = (selectedItems, action) => {
     if (action.name === "sortby") {

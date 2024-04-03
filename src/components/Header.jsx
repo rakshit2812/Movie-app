@@ -9,7 +9,7 @@ import ContentWrapper from "./ContentWrapper";
 import logo from "../assets/movix-logo.svg";
 import useFetch from "../hooks/useFetch";
 
-export default function Header({Setbollywood}) {
+export default function Header({Setbollywood, Setlatest}) {
   // const [bollywood , Setbollywood] = useState(false);
   const [show, setShow] = useState("top");
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -63,14 +63,22 @@ export default function Header({Setbollywood}) {
   };
 
   const navigationHandler = (type) => {
-    if (type === "movie" || type === "bollywood") {
+    if (type === "movie" || type === "bollywood" || type === "latest") {
       if(type === "bollywood"){
         Setbollywood(true);
       }
-      else Setbollywood(false)
+      else if(type==="latest"){
+        Setlatest(true)
+      }
+      else {
+        Setbollywood(false)
+        Setlatest(false)
+      }
       navigate("/explore/movie");
-    } else {
+    } 
+    else {
       Setbollywood(false)
+      Setlatest(false)
       navigate("/explore/tv");
     }
     setMobileMenu(false);
@@ -85,6 +93,9 @@ export default function Header({Setbollywood}) {
         <ul className="MenuItems">
           <li className="MenuItem" onClick={() => navigationHandler("movie")}>
             Movies
+          </li>
+          <li className="MenuItem" onClick={() => navigationHandler("latest")}>
+            Latest
           </li>
           <li className="MenuItem" onClick={() => navigationHandler("bollywood")}>
             Bollywood
